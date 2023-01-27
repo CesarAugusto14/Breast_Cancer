@@ -28,7 +28,12 @@ for patient in tqdm(sorted(os.listdir(path))):
             if image != '.DS_Store':
                 # Saving the image in JPEG format trying to preserve the original information.
                 data = pydicom.dcmread(path + patient + '/' + image)
-                data = data.pixel_array
+                if data.PhotometricInterpretation == 'MONOCHROME1':
+                    # This is the case when the image is white in the background.
+                    data = 255 - data.pixel_array
+                else:
+                    # This is the case when the image is black in the background.
+                    data = data.pixel_array
                 data = data - np.min(data)
                 data = data/np.max(data)
                 data = (data * 255).astype(np.uint8)

@@ -50,6 +50,7 @@ Thumbs.db
 *.nii
 *.zip
 *.jpg
+*.pt
 
 desktop.ini
 data/*

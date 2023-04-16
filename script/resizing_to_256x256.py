@@ -20,7 +20,7 @@ else:
 # For each patient, we will need to create a new image folder within the 256_images folder.
 for patient in tqdm(sorted(os.listdir(path))):
     # Loop for each patient. We need fo ignore the .DS_Store file if macOS.
-     if patient != '.DS_Store':
+     if patient != '._.DS_Store' and patient != '.DS_Store':
         # Create the folder for the jpeg images.
         if not os.path.exists('./data/256_images/' + str(patient)):
             os.mkdir('./data/256_images/' + str(patient))
@@ -32,6 +32,9 @@ for patient in tqdm(sorted(os.listdir(path))):
         for image in sorted(os.listdir(path + str(patient))):
             # Loop for each image. We need fo ignore the .DS_Store file if macOS.
             if image != '.DS_Store':
+                #if image starts with ._, then strip it.
+                if image.startswith('._'):
+                    image = image[2:]
                 data = cv2.imread(path + patient + '/' + image)
                 data = cv2.resize(data, [256,256], interpolation=cv2.INTER_CUBIC)
                 cv2.imwrite(path_to_save + image, data)

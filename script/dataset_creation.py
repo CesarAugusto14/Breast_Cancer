@@ -37,6 +37,7 @@ class DatasetBreastWrong(torch.utils.data.Dataset):
         image = image.permute(2, 0, 1)
         # Get the label it should be either 0 or 1
         label = self.labels[idx]
+        image, labels = image.cuda(), labels.cuda()
         sample = {'image': image, 'label': label}
         if self.transform:
             sample = self.transform(sample)
@@ -97,9 +98,13 @@ class DatasetBreastDownsample(torch.utils.data.Dataset):
         image = plt.imread(path_image)
         image = image.astype(np.float32)
         image = torch.from_numpy(image)
+        # Convert the image to a 3 channel image
+        image = image.unsqueeze(0)
+        
         # image = image.permute(2, 0, 1)
         # Get the label it should be either 0 or 1
         label = self.labels[idx]
+        image, label = image.cuda(), label.cuda()
         sample = {'image': image, 'label': label}
         if self.transform:
             sample = self.transform(sample)

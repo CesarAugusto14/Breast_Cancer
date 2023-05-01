@@ -105,21 +105,36 @@ While we studied the RSNA dataset with our exploratory data analysis (EDA), we d
 
 \subsection{Data Imbalance}
 
-Some theoretical context for DI
+In the context of machine learning and statistics, we refer to \textit{class imbalance} to the event where there are more observations of one class, than the other available classes in the dataset. This is specially detrimental when we train any kind of DL model, as it leads to a poor performance when we try to predict the underrepresented class. 
+
+Data imbalance is a problem in machine learning as it could lead to models that are biased towards the majority class. This is because the model is more likely to learn from the majority class data, and will therefore be more likely to predict the majority class.
+
+In our case, a 96\% of our data is labeled as healthy. This represents a heavily imbalanced classification problem, as setting a classifier that always points into the healthy label, will give a 96\% of accuracy but 0 recall. The goal then, would be to improve the 0 recall into a more suitable number. 
+
+There are four ways to solve this issue in our case: 
+
+\begin{itemize}
+\item \textbf{Undersampling the majority class:} the designer of the experiment can sample without replacement from observations in the majority class. This can be done until the number of samples per class is the same. 
+
+\item \textbf{Oversampling the minority class:} the designer of the experiment can sample with replacement from observations in the minority class. This can be done until the number of samples per class is the same. However, a drawback of this method is that with a heavily imbalanced class, we will end up with all the instances repeated, which might be also detrimental to the problem.
+
+\item \textbf{Data augmentation of the minority class:} the designer of the experiment can sample with replacement from observations in the minority class, however, to each sampled instance, a random transformation will be applied to it. The transformation can include one or several types of: geometric transformation, probabilistic transformations, non linear transformation, including additive or multiplicative random noise, among others. This will ensure to have different instances and a suitable number of data points, which is desirable for Deep Learning problems. 
+
+\item \textbf{Generative methods: } with images, in the past two years we have seen the increase of generative approaches for images like DALL-E and Stable Diffusion, and more classical methods like the Generative Adversarial Networks (GANs). All of these methods end up creating synthetic images, and synthesizing patterns to create new images from the minority class, would be a potential solution for the Data Imbalance problem. 
+\end{itemize}
+
 \subsection{Data Leakage}
 
-Some context for Data Leak
+We refer to data leakage as the event where some information used in the training stage of the model, will appear in the evaluation stage. In this case, we have to be very careful when we split our dataset into train and test sets, as if we do it image-wise, we will end up with images from the same patient in both sets. Therefore, to solve this issue, we will be splitting the dataset patient-wise. 
+
 \subsection{Image related issues}
 
-Description of our images 
+As the images are coming from different hospitals and, sometimes, from different imaging machines, they present different sizes and contrasts. Also, the dataset is large, it has a size of 116 GB of information and all the images are stored in DICOM format.  
+
+The DICOM format, is highly used in clinical environments as it allows the physician to store metadata related to the patient and the machine. As we will only need the pixel array, we will just save the arrays into JPEG format to save space. 
+
 \section{Methods and Preprocessing}
 
-\subsection{Data Imbalance}
-
-Undersampling and Oversampling
-\subsection{Data Leakage}
-
-Avoiding sampling images and sampling the patients. 
 \subsection{Image Processing}
 
 VOI LUT

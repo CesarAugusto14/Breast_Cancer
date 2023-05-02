@@ -26,7 +26,7 @@ which_breast = 'L'
 # Compose a transformation to be applied to the images
 transform = Compose([ToPILImage(),
     RandomHorizontalFlip(), RandomRotation(10), ToTensor()])
-dset_trial = DatasetBreastUpsample(df, path_images, view=modality, breast=which_breast, transform=transform)
+dset_trial = DatasetBreastDownsample(df, path_images, view=modality, breast=which_breast, transform=transform)
 
 ## Test the DatasetBreastDownsample class, check if the images are loaded correctly and if the labels are correct:
 

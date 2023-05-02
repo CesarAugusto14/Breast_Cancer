@@ -136,10 +136,48 @@ The DICOM format, is highly used in clinical environments as it allows the physi
 \section{Methods and Preprocessing}
 
 \subsection{Image Processing}
+During the last 6 years, RSNA has launched eight different AI challenges using medical imaging as inputs, all these challenges have:
 
-VOI LUT
-ROI methods
-Undersampling 
+\begin{itemize}
+\item Images with different sizes. 
+\item Images with different contrast. 
+\item Images from different places, that could have annotations created by the physicians on top of the images. 
+\end{itemize}
+
+In this subsection we will deal with these problems. 
+
+\subsubsection{Images with different sizes}
+
+As the CNNs only allow one predefined size, this is a crucial problem. The first way to solve this is to downsample all the images into a specific size using a bicubic resizing algorithm. This technique was implemented using the OpenCV library. As an important drawback of this method, is that when we downsample the images we will lose resolution, and we will not hold the geometrical shape of the breast. The result of doing this is comparable to the top left picture of \ref{fig:types_of_view}, and it is shown in Figure .
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=3in]{deformed_breast}
+\caption{Deformed breast after downsampling to 256x256.}
+\label{fig:deformed}
+
+\end{figure}
+
+\subsubsection{Images with different contrast.}
+
+DICOM images have information about the Look-up table (LUT), that allows the machine to transform the contrast of the image. We did the LUT transformation using the OpenCV package with Python. One crucial problem with these images from RSNA is that some machines were taken on a white background and black tissue, which is different to the images from Figure \ref{fig:types_of_view}. An example is shown in figure \ref{fig:monochrome}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=3.2in]{monochrome_example}
+\caption{MONOCHROME1 labeled image}
+\label{fig:monochrome}
+\end{figure}
+
+We identified all these images, and converted them taking their negative by using the equation:
+
+\begin{equation}
+I_t(x,y) = 255 - I_s(x,y)
+\end{equation}
+
+Where $I_t$ is the transformed image and $I_s$ is the source image. 
+
+\subsubsection{Images from different places}
 \subsection{Convolutional Neural Network}
 
 \section{Results}

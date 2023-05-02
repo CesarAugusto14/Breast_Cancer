@@ -7,6 +7,15 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -178,8 +187,29 @@ I_t(x,y) = 255 - I_s(x,y)
 Where $I_t$ is the transformed image and $I_s$ is the source image. 
 
 \subsubsection{Images from different places}
+
+As the images are from different machines and places, some of them have annotations on top of the image, like the letter "L-MLO" that we can see in Figure \ref{fig:deformed}. To solve this problem, we followed a tutorial on Regions of Interest (ROI) from \href{https://www.kaggle.com/code/awsaf49/rsna-bcd-roi-methods-comparison}{the wonderful Notebook from Awsaf, hosted in Kaggle}. The result is presented in Figure \ref{fig:roi_belc}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=3.2in]{ROI_based}
+\caption{On the left, the original image with the found ROI. On the right, the cropped and resized to 256x256 image.}
+\label{fig:roi_belc}
+\end{figure}
+
+The ROI extraction method was done by using the adaptive threshold from OpenCV, then eroding the image with a structural element of a square of ones, then we found the two objects in the image, and took the biggest one (the breast instead of the annotations). From such final image, we downsampled it to 256x256 pixels, as can be seen in Figure \ref{fig:roi_belc}.
 \subsection{Convolutional Neural Network}
 
+The objective CNN designed for this problem is presented in Figure \ref{fig:CNN}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=3.2in]{CNN}
+\caption{Convolutional Neural Network}
+\label{fig:CNN}
+
+Note that the network has 3 convolutional layers, and 3 fully connected layers, which makes it a simple model for classification tasks. 
+\end{figure}
 \section{Results}
 \subsection{Baseline Model}
 blah blah

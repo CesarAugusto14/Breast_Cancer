@@ -2,13 +2,10 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
 \HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
-\global\let\oldcontentsline\contentsline
-\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
 \global\let\oldnewlabel\newlabel
 \gdef\newlabel#1#2{\newlabelxx{#1}#2}
 \gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
 \AtEndDocument{\ifx\hyper@anchor\@undefined
-\let\contentsline\oldcontentsline
 \let\newlabel\oldnewlabel
 \fi}
 \fi}
@@ -16,9 +13,12 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{Mohamed2018}
+\citation{Mohamed2018}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {II}RSNA Breast Cancer Dataset}{1}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Types of view in a mammogram screening:}{1}{subsection.2.1}\protected@file@percent }
+\citation{Marrocco2020}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Example of the views for one patient. In the left column we can see the MLO view, and in the right column we can see the CC view. }}{2}{figure.1}\protected@file@percent }
 \newlabel{fig:types_of_view}{{1}{2}{Example of the views for one patient. In the left column we can see the MLO view, and in the right column we can see the CC view}{figure.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Exploratory Data Analysis}{2}{subsection.2.2}\protected@file@percent }
@@ -28,6 +28,11 @@
 \newlabel{fig:ages}{{3}{2}{Age Distribution}{figure.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Problems to Solve}{2}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Data Imbalance}{2}{subsection.3.1}\protected@file@percent }
+\citation{SMOTE}
+\citation{SMOTE}
+\citation{Goodfellow2016}
+\citation{Goodfellow2016}
+\citation{wen2020}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Data Leakage}{3}{subsection.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Image related issues}{3}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Methods and Preprocessing}{3}{section.4}\protected@file@percent }
@@ -47,6 +52,21 @@
 \@writefile{toc}{\contentsline {section}{\numberline {V}Results}{4}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Baseline Model}{4}{subsection.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Model with extracted ROIs}{4}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Extra models (this might be tricky given the timeline, as we don't have results)}{4}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion and Suggestions}{4}{section.6}\protected@file@percent }
-\gdef \@abspage@last{4}
+\citation{Goodfellow2016}
+\bibstyle{IEEEtran}
+\bibdata{biblio}
+\bibcite{Marrocco2020}{1}
+\bibcite{SMOTE}{2}
+\bibcite{Goodfellow2016}{3}
+\bibcite{Mohamed2018}{4}
+\bibcite{wen2020}{5}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Confusion matrix of the baseline model inferring the test data.}}{5}{figure.8}\protected@file@percent }
+\newlabel{fig:confusion_baseline}{{8}{5}{Confusion matrix of the baseline model inferring the test data}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces ROC of the baseline model inferring the test data.}}{5}{figure.9}\protected@file@percent }
+\newlabel{fig:roc_baseline}{{9}{5}{ROC of the baseline model inferring the test data}{figure.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Extra models}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces ROC of the ROI model inferring the test data.}}{5}{figure.10}\protected@file@percent }
+\newlabel{fig:roc_ROI}{{10}{5}{ROC of the ROI model inferring the test data}{figure.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion and Suggestions}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{5}{section*.1}\protected@file@percent }
+\gdef \@abspage@last{6}

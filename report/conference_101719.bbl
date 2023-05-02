@@ -1,0 +1,35 @@
+\begin{thebibliography}{1}
+
+\bibitem{Marrocco2020}
+Alessandro Bria, Claudio Marrocco, and Francesco Tortorella.
+\newblock Addressing class imbalance in deep learning for small lesion
+  detection on medical images.
+\newblock {\em Computers in Biology and Medicine}, 120:103735, 5 2020.
+
+\bibitem{SMOTE}
+N.~V. Chawla, K.~W. Bowyer, L.~O. Hall, and W.~P. Kegelmeyer.
+\newblock Smote: Synthetic minority over-sampling technique.
+\newblock {\em Journal of Artificial Intelligence Research}, 16:321--357, 6
+  2002.
+
+\bibitem{Goodfellow2016}
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville.
+\newblock {\em Deep Learning}.
+\newblock MIT Press, 2016.
+\newblock \url{http://www.deeplearningbook.org}.
+
+\bibitem{Mohamed2018}
+Aly~A. Mohamed, Yahong Luo, Hong Peng, Rachel~C. Jankowitz, and Shandong Wu.
+\newblock Understanding clinical mammographic breast density assessment: a deep
+  learning perspective.
+\newblock {\em Journal of Digital Imaging}, 31:387--392, 8 2018.
+
+\bibitem{wen2020}
+Junhao Wen, Elina Thibeau-Sutre, Mauricio Diaz-Melo, Jorge Samper-González,
+  Alexandre Routier, Simona Bottani, Didier Dormont, Stanley Durrleman, Ninon
+  Burgos, and Olivier Colliot.
+\newblock Convolutional neural networks for classification of alzheimer's
+  disease: Overview and reproducible evaluation.
+\newblock {\em Medical Image Analysis}, 63:101694, 7 2020.
+
+\end{thebibliography}

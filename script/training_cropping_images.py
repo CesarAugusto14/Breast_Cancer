@@ -5,12 +5,12 @@ import pandas as pd
 import seaborn as sns
 import torch
 import torch.nn as nn
-
+from torchvision.transforms import Compose, RandomHorizontalFlip, RandomRotation, ToPILImage, ToTensor
 from torchsummary import summary
 from sklearn.metrics import confusion_matrix, roc_curve, roc_auc_score
 
 # Custom modules:
-from dataset_creation import DatasetBreastDownsample
+from dataset_creation import DatasetBreastDownsample, DatasetBreastUpsample
 from train_scripts import train
 
 torch.manual_seed(1311)
@@ -23,7 +23,10 @@ path_images = './data/256_images_cropped/'
 # list_images = sorted(os.listdir(path_images))
 modality = 'CC'
 which_breast = 'L'
-dset_trial = DatasetBreastDownsample(df, path_images, view=modality, breast=which_breast)
+# Compose a transformation to be applied to the images
+transform = Compose([ToPILImage(),
+    RandomHorizontalFlip(), RandomRotation(10), ToTensor()])
+dset_trial = DatasetBreastUpsample(df, path_images, view=modality, breast=which_breast, transform=transform)
 
 ## Test the DatasetBreastDownsample class, check if the images are loaded correctly and if the labels are correct:
 
@@ -50,14 +53,14 @@ dset_trial = DatasetBreastDownsample(df, path_images, view=modality, breast=whic
 # Now that we know that this work, let's create the dataloaders:
 
 # Train-validation-test split
-train_size = int(0.6 * len(dset_trial))
-val_size = int(0.2 * len(dset_trial))
+train_size = int(0.8 * len(dset_trial))
+val_size = int(0.1 * len(dset_trial))
 test_size = len(dset_trial) - train_size - val_size
 train_dataset, val_dataset, test_dataset = torch.utils.data.random_split(dset_trial, [train_size, val_size, test_size])
 
 
 # Create the dataloaders
-size_batch = 16
+size_batch = 32
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=size_batch, shuffle=True)
 val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=size_batch, shuffle=True)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=size_batch, shuffle=True)
@@ -96,12 +99,18 @@ model = nn.Sequential()
 model.add_module('conv1', nn.Conv2d(in_channels = 1, out_channels = 8, kernel_size = 3, stride = 1, padding = 1))
 model.add_module('relu1', nn.ReLU())
 model.add_module('pool1', nn.MaxPool2d(kernel_size = 2, stride = 2))
+model.add_module('dropout', nn.Dropout(p = 0.5))
+
 model.add_module('conv2', nn.Conv2d(in_channels = 8, out_channels = 16, kernel_size = 3, stride = 1, padding = 1))
 model.add_module('relu2', nn.ReLU())
 model.add_module('pool2', nn.MaxPool2d(kernel_size = 2, stride = 2))
+model.add_module('dropout', nn.Dropout(p = 0.5))
+
 model.add_module('conv3', nn.Conv2d(in_channels = 16, out_channels = 32, kernel_size = 3, stride = 1, padding = 1))
 model.add_module('relu3', nn.ReLU())
 model.add_module('pool3', nn.MaxPool2d(kernel_size = 2, stride = 2))
+model.add_module('dropout', nn.Dropout(p = 0.5))
+
 # flatten
 model.add_module('flatten', nn.Flatten())
 model.add_module('fc1', nn.Linear(in_features = 32768, out_features = 512))
@@ -122,7 +131,7 @@ summary(model, (1, 256, 256))
 criterion = nn.BCELoss()
 
 # Define the optimizer with l2 regularization
-optimizer = torch.optim.SGD(model.parameters(), lr=1e-5, weight_decay=1, momentum=0.9)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.00001)
 
 num_epochs = 20
 

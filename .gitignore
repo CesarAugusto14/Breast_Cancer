@@ -60,3 +60,4 @@ log/*
 checkpoints/*
 tb_logs/*
 lightning_logs/*
+biblio.enl

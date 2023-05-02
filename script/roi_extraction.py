@@ -74,3 +74,22 @@ def find_ROI_BELC(image_path):
     # Resize
     roi_image = cv2.resize(roi, (256, 256), interpolation=cv2.INTER_CUBIC)
     return roi, roi_image, ys, xs
+
+def find_ROI_BBLC(image_path, size = (256, 256)):
+    img = cv2.imread(image_path)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # Gaussian Blurring:
+    blur = cv2.GaussianBlur(img, (5, 5), 0)
+    # Thresholding:
+    ret, breast_mask = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    # Finding Contours:
+    contours, _ = cv2.findContours(breast_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # Find max contour:
+    max_contour = max(contours, key=cv2.contourArea)
+    # Find bounding box:
+    x, y, w, h = cv2.boundingRect(max_contour)
+    # Crop image:
+    roi = img[y:y+h, x:x+w]
+    # Resize
+    roi_image = cv2.resize(roi, size, interpolation=cv2.INTER_CUBIC)
+    return roi, roi_image, y, x, w, h

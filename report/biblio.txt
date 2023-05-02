@@ -1,0 +1,33 @@
+﻿@article{RN1,
+   author = {Barbarkoff, D. and Gatewood, O. M. and Brem, R. F.},
+   title = {Supplemental Views for Equivocal Mammographic Findings: A Pictorial Essay},
+   journal = {Breast J},
+   volume = {6},
+   number = {1},
+   pages = {34-43},
+   note = {Barbarkoff, Debra
+Gatewood, Olga M B
+Brem, Rachel F
+eng
+2001/05/12
+Breast J. 2000 Jan;6(1):34-43. doi: 10.1046/j.1524-4741.2000.98093.x.},
+   ISSN = {1524-4741 (Electronic)
+1075-122X (Linking)},
+   DOI = {10.1046/j.1524-4741.2000.98093.x},
+   url = {https://www.ncbi.nlm.nih.gov/pubmed/11348333
+https://onlinelibrary.wiley.com/doi/pdfdirect/10.1046/j.1524-4741.2000.98093.x?download=true},
+   year = {2000},
+   type = {Journal Article}
+}
+
+@book{RN2,
+   author = {Sordo, Margarita and Vaidya, Sachin and Jain, Lakhmi C.},
+   title = {Advanced Computational Intelligence Paradigms in Healthcare - 3},
+   series = {Studies in Computational Intelligence},
+   ISBN = {978-3-540-77661-1
+978-3-540-77662-8},
+   DOI = {10.1007/978-3-540-77662-8},
+   year = {2008},
+   type = {Book}
+}
+
